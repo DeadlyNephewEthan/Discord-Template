@@ -2,7 +2,7 @@
 This Discord Template is an advanced, easy to setup, free, and unbranded Discord bot. The instructions to set it up and host it are available here: https://github.com/NekoYasui/Discord-Template/wiki/setup
 
 **Support**  
-If you need help with the bot, feel free to join our support server here: https://discord.gg/yvqtvECprC.
+If you need help with the bot, feel free to join our support server here: discord.com/invite/yvqtvECprC.
 
 **Other Information**  
 Invite Manager requires Node.js v12 or higher.   
