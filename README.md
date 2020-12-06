@@ -8,7 +8,7 @@ This Discord Template used Firebase as a Database, create an database here: http
 If you need help with the bot, feel free to join our official server here: https://discord.com/invite/yvqtvECprC.
 
 **Other Information**  
-Invite Manager requires Node.js v12 or higher.   
+Discord Template requires Node.js v12 or higher.   
 
 Please note we are not responsible for if anything happens to your bot account. It is your responsibility to keep the  token away from anyone you don't trust. The bot uses discord.js to interact with the Discord API with your bot token. Do not share your .env file with anyone once filled out.
 
