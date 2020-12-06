@@ -29,12 +29,8 @@ module.exports = function(client) {
         // Handle requests
 
         if (req.method === "GET") {
-    console.log(`[Website] Someone is clicking... https://${req.headers.host}${req.url}`);
-    function pong() {
-        fetch(`https://${req.headers.host}${req.url}`);
-
-        console.log(`Pinging: https://${req.headers.host}${req.url}`);
-    } setInterval(pong, 60000);
+            console.log(`[Website] Someone is clicking... https://${req.headers.host}${req.url}`);
+            
             if (req.headers["x-forwarded-proto"] === "http") {
                 // Redirect to HTTPS
 
@@ -119,6 +115,12 @@ module.exports = function(client) {
         }
     }).listen(config.port)
 
+    function pong() {
+        fetch(`https://${config.replit_url}`);
+
+        console.log(`Pinging: https://${config.replit_url}`);
+    } setInterval(pong, 60000);
+    
     server.on("listening", () => {
         util.log(`HTTP server listening on port ${config.port}`)
     })
