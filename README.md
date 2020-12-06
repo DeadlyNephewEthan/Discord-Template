@@ -4,8 +4,8 @@ This Discord Template is an advanced, easy to setup, free, and unbranded Discord
 **Database**  
 This Discord Template used Firebase as a Database, create an database here: https://console.firebase.google.com/u/0/
 
-**Support**  
-If you need help with the bot, feel free to join our support server here: https://discord.com/invite/yvqtvECprC.
+**Official Discord Server**  
+If you need help with the bot, feel free to join our official server here: https://discord.com/invite/yvqtvECprC.
 
 **Other Information**  
 Invite Manager requires Node.js v12 or higher.   
