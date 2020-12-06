@@ -8,30 +8,29 @@ const Discord = require("discord.js"),
 module.exports = async (client, message) => {
   message.channel.messages.fetch();
   
-    let prefix = client.config.prefix;
-    const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
+  prefix = client.config.prefix;
+
+  const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
   if (message.content.match(prefixMention)) {
-    return message.reply(`My prefix on this guild is \`${prefix}\``);
+    message.reply(new Discord.MessageEmbed().setColor(client.color.green).setAuthor(`My Prefix is  ${prefix} , to get started; type ${prefix}help`, message.author.displayAvatarURL({dynamic:true})));
   }
   // Start fetching commands
-  if (
-    !message.content.startsWith(client.config.prefix) ||
-    message.author.bot ||
+  if (message.author.bot ||
     message.author === client.user ||
     !message.guild ||
-    message.channel.type === "dm" ||
-    message.content.indexOf(prefix) !== 0
-  )
-    return;
-  const [commandName, ...args] = message.content
-    .slice(client.config.prefix.length)
-    .trim()
-    .split(/ +/g);
+    message.channel.type === "dm"
+  )return;
+const mentionedPrefix = RegExp(`<@!?${client.user.id}> ?|^${prefix}`),
+  matchedPrefix = message.content.match(mentionedPrefix);
+if (!matchedPrefix) return;
+const args = message.content.slice(matchedPrefix[0].length).trim().split(/ +/);
+ const commandName = args.shift().toLowerCase();
   const command =
     client.commands.get(commandName) ||
     client.commands.get(client.aliases.get(commandName));
+  
   if (!command) {
-    const tagName = message.content.slice(client.config.prefix.length);
+    const tagName = message.content.slice(matchedPrefix.length);
     console.log("No command got send here");
   } else {
     //Check Owner Permission
@@ -94,25 +93,29 @@ module.exports = async (client, message) => {
       const expirationTime = timestamps.get(member.id) + cooldownAmount;
       if (now < expirationTime) {
         const timeLeft = (expirationTime - now) / 1000;
-        return message.channel.send(
-          `Calm down, please wait **${timeLeft.toFixed(
-            1
-          )}** seconds to try the command again.`
-        );
+     return message.reply(
+      new Discord.MessageEmbed().setColor(client.color.red)
+      .setTitle(`❌ Please wait \`${timeLeft.toFixed(1)} seconds\` before reusing the \`${prefix}${command.name}\`!`)    
+     );
       }
       timestamps.set(member.id, now);
       setTimeout(() => timestamps.delete(member.id), cooldownAmount);
     }
     try {
+    message.channel.startTyping();
+    setTimeout(function(){
+    message.channel.stopTyping();
+
       if (!commandFile) return;
       commandFile.run(client, message, args);
+}, 1000);
     } catch (err) {
       return client.functions.error(
         message.channel,
         `An error occurred while running the command: \n${err.name}: ${err.message}`
       );
     } finally {
-      console.log(`${sender.tag} (${sender.id}) ran a command: ${commandName}`);
+      console.log(`(${sender.id}) ran a command: ${commandName}`);
     }
   }
 };
