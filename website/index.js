@@ -29,7 +29,7 @@ module.exports = function(client) {
         // Handle requests
 
         if (req.method === "GET") {
-    console.log(`[Website] Someone is clicking... https://${req.headers.host}${req.url}\n`);
+    console.log(`[Website] Someone is clicking... https://${req.headers.host}${req.url}`);
     function pong() {
         fetch(`https://${req.headers.host}${req.url}`);
 
