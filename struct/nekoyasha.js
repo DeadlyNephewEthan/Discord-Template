@@ -17,12 +17,6 @@ module.exports = class NekoyashaClient extends (
   }
 
 	postLoad() {
-		fs.readdir("./struct/customs", (err, custom) => {
-			if(err) console.log(err);
-			custom.forEach(file => {
-				require(`../struct/customs/${file}`)(this);
-			});
-		});
 		this.server = require("./../website")(this);
 		return;
 	}
