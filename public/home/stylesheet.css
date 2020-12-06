@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900');
+
+* {
+    box-sizing: border-box
+}
+
+html {
+    height: 100%;
+    width: 100%
+}
+
+body {
+    background: #000;
+    color: #fff;
+    text-shadow: 2px 2px #000;
+    overflow: hidden
+}
+
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    text-align: center
+}
+
+.video-background {
+    background: #000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: 1s opacity;
+    filter: brightness(80%);
+    z-index: -99
+}
+
+.video-foreground,
+.video-background iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none
+}
+
+.video-background:after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    background: url(../images/overlay.png);
+    background-repeat: repeat
+}
+
+@media(min-aspect-ratio:16/9) {
+    .video-foreground {
+        height: 300%;
+        top: -100%
+    }
+}
+
+@media(max-aspect-ratio:16/9) {
+    .video-foreground {
+        width: 300%;
+        left: -100%
+    }
+}
+
+@media all and (max-width:600px) {
+    .vid-info {
+        width: 50%;
+        padding: .5rem
+    }
+    
+    .vid-info h1 {
+        margin-bottom: .2rem
+    }
+}
+
+@media all and (max-width:500px) {
+    .vid-info .acronym {
+        display: none
+    }
+}
