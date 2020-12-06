@@ -1,15 +1,6 @@
 const { Client, Collection, Intents, Message } = require("discord.js"),
   fs = require("fs");
 
-var admin = require("firebase-admin");
-
-var serviceAccount = require("../storage/serviceAccountKey.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://<datababase_name>.firebaseio.com"
-});
-
 module.exports = class NekoyashaClient extends (
   Client
 ) {
@@ -22,7 +13,6 @@ module.exports = class NekoyashaClient extends (
     this.helps = new Collection();
     this.config = new require("../storage/config.js");
     this.color = new require("../storage/color.json");
-    this.database = new admin.firestore();
     this.functions = new require("../struct/util/functions.js");
   }
 
