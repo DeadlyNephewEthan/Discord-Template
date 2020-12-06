@@ -7,7 +7,7 @@ var serviceAccount = require("../storage/serviceAccountKey.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://nekoysha.firebaseio.com"
+  databaseURL: "https://<datababase_name>.firebaseio.com"
 });
 
 module.exports = class NekoyashaClient extends (
